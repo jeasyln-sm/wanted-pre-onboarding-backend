@@ -7,18 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Builder
 public class CompanyDTO {
 
-    private String position;
-
-    private int compensation;
-
-    private String content;
-
-    private String language;
+    private Long id;
+    private String name;
+    private String country;
+    private String region;
 }
