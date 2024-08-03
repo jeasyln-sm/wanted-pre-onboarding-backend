@@ -10,7 +10,6 @@
 </head>
 <body>
 
-<!-- TABLE -->
 <div layout:fragment="content">
 
 <div class="container">
@@ -27,14 +26,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr th:each="question : ${questionList}">
           <th scope="row">1</th>
-          <td>원티드랩</td>
-          <td>한국</td>
-          <td>서울</td>
-          <td>백엔드 주니어 개발자</td>
-          <td>1500000</td>
-          <td>Python</td>
+          <td th:text="${question.subject}">원티드랩</td>
+          <td th:text="${question.subject}">한국</td>
+          <td th:text="${question.subject}">서울</td>
+          <td th:text="${question.subject}">백엔드 주니어 개발자</td>
+          <td th:text="${question.subject}">1500000</td>
+          <td th:text="${question.subject}">Python</td>
         </tr>
         <tr>
           <th scope="row">2</th>

@@ -1,7 +1,7 @@
 package com.recruitment.service;
 
 import com.recruitment.repository.CompanyRepository;
-import com.recruitment.repository.JobPositionRepository;
+import com.recruitment.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
-    private final JobPositionRepository jobPositionRepository;
+    private final JobRepository jobPositionRepository;
 
 }

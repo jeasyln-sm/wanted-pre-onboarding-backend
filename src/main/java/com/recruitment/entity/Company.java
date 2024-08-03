@@ -26,7 +26,7 @@ public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;            //회사 id (자동 증가)
 
     private String name;        //회사 이름
 
