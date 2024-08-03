@@ -1,5 +1,6 @@
 package com.recruitment.dto;
 
+import com.recruitment.entity.Company;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

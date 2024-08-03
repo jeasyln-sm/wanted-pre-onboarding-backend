@@ -1,5 +1,7 @@
 package com.recruitment.entity;
 
+import com.recruitment.dto.CompanyDTO;
+import com.recruitment.dto.JobReqDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +27,7 @@ public class JobPosition {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;                //채용id
+    private Long jobPositionId;                //채용id
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
@@ -40,4 +42,16 @@ public class JobPosition {
 
     private String language;        //채용언어
 
+
+    public static JobPosition createJobPosition(JobReqDTO jobReqDTO, Company company) {
+        JobPosition jobPosition = JobPosition.builder()
+                .company(company)
+                .position(jobReqDTO.getPosition())
+                .reward(jobReqDTO.getReward())
+                .content(jobReqDTO.getContent())
+                .language(jobReqDTO.getLanguage())
+                .build();
+
+        return jobPosition;
+    }
 }

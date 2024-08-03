@@ -22,7 +22,7 @@ class JobRepositoryTest {
     @DisplayName("생성 테스트")
     public void createJobTest() {
         Company company = Company.builder()
-                .id(8L)
+                .id(1L)
                 .country("한국")
                 .name("원티드")
                 .region("판교")
