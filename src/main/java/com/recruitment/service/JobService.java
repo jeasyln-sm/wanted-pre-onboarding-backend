@@ -10,6 +10,7 @@ import com.recruitment.repository.JobPositionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,14 @@ public class JobService {
     // 채용 공고 목록 -> 전체 목록
     public List<JobResDTO> findAllJob() {
         List<JobPosition> jobs = jobPositionRepository.findAll();
-        return jobs.stream().map(JobDTOMapper::toDTO).collect(Collectors.toList());
+        List<JobResDTO> jobResDTOS = new ArrayList<>();
+
+        for(JobPosition jobPosition : jobs) {
+            JobResDTO dto = JobDTOMapper.toDTO(jobPosition);
+            jobResDTOS.add(dto);
+        }
+
+        return jobResDTOS;
     }
 
 

@@ -61,51 +61,6 @@
     </form>
 </div>
 
-<script>
-    // 부트스트랩 폼 검증 스크립트
-    (function () {
-        'use strict'
-
-        var forms = document.querySelectorAll('.needs-validation')
-
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-
-    document.getElementById('jobPostingForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const formData = new FormData(this);
-        const jsonData = Object.fromEntries(formData.entries());
-
-        fetch('/api/job-postings', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(jsonData),
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('채용 공고가 성공적으로 등록되었습니다.');
-            // 필요한 경우 추가 처리
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('채용 공고 등록에 실패했습니다.');
-        });
-    });
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </body>
