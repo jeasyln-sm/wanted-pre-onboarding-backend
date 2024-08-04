@@ -30,12 +30,7 @@ public class JobService {
         Company company = companyRepository.findById(companyId)
                 .orElseThrow(() -> new IllegalArgumentException("회사 ID가 존재하지 않습니다."));
 
-        JobPosition job = new JobPosition();
-        job.setCompany(company);
-        job.setPosition(jobReqDTO.getPosition());
-        job.setReward(jobReqDTO.getReward());
-        job.setContent(jobReqDTO.getContent());
-        job.setLanguage(jobReqDTO.getLanguage());
+        JobPosition job = JobDTOMapper.toEntity(jobReqDTO, company);
 
         jobPositionRepository.save(job);
     }

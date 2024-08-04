@@ -41,16 +41,4 @@ public class JobPosition {
 
     private String language;        //채용언어
 
-
-    public static JobPosition createJobPosition(JobReqDTO jobReqDTO, Company company) {
-        JobPosition jobPosition = JobPosition.builder()
-                .company(company)
-                .position(jobReqDTO.getPosition())
-                .reward(jobReqDTO.getReward())
-                .content(jobReqDTO.getContent())
-                .language(jobReqDTO.getLanguage())
-                .build();
-
-        return jobPosition;
-    }
 }
