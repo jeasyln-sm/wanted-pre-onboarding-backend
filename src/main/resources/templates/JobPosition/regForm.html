@@ -14,40 +14,40 @@
 
     <div class="container mt-5">
         <h1 class="text-center">채용 공고 등록</h1>
-        <form id="jobPostingForm" class="needs-validation" novalidate>
+        <form th:action="@{/new}" th:object="${jobReqDto}" method="post" class="needs-validation" novalidate>
             <div class="mb-3">
                 <label for="companyId" class="form-label">회사 ID:</label>
-                <input type="number" class="form-control" id="companyId" name="companyId" required>
+                <input type="number" class="form-control" id="companyId" th:field="*{companyId}" required>
                 <div class="invalid-feedback">
-                    회사 ID를 입력해주세요.
+                    회사 ID를 입력해 주세요.
                 </div>
             </div>
             <div class="mb-3">
                 <label for="position" class="form-label">채용 포지션:</label>
-                <input type="text" class="form-control" id="position" name="position" required>
+                <input type="text" class="form-control" id="position" th:field="*{position}" required>
                 <div class="invalid-feedback">
-                    채용 포지션을 입력해주세요.
+                    채용 포지션을 입력해 주세요.
                 </div>
             </div>
             <div class="mb-3">
                 <label for="reward" class="form-label">채용 보상금:</label>
-                <input type="number" class="form-control" id="reward" name="reward" required>
+                <input type="number" class="form-control" id="reward" th:field="*{reward}" required>
                 <div class="invalid-feedback">
-                    채용 보상금을 입력해주세요.
+                    채용 보상금을 입력해 주세요.
                 </div>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">채용 내용:</label>
-                <textarea class="form-control" id="description" name="description" required></textarea>
+                <textarea class="form-control" id="content" th:field="*{content}" required></textarea>
                 <div class="invalid-feedback">
-                    채용 내용을 입력해주세요.
+                    채용 내용을 입력해 주세요.
                 </div>
             </div>
             <div class="mb-3">
                 <label for="techStack" class="form-label">사용 기술:</label>
-                <input type="text" class="form-control" id="techStack" name="techStack" required>
+                <input type="text" class="form-control" id="language" th:field="*{language}" required>
                 <div class="invalid-feedback">
-                    사용 기술을 입력해주세요.
+                    사용 기술을 입력해 주세요.
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">등록</button>

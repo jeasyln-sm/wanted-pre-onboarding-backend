@@ -2,7 +2,7 @@ package com.recruitment.service;
 
 import com.recruitment.entity.Company;
 import com.recruitment.repository.CompanyRepository;
-import com.recruitment.repository.JobRepository;
+import com.recruitment.repository.JobPositionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
-    private final JobRepository jobPositionRepository;
+    private final JobPositionRepository jobPositionRepository;
 
 
     public Company saveCompany(Company company) {
