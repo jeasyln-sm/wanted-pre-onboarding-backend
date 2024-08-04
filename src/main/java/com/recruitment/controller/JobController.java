@@ -1,6 +1,8 @@
 package com.recruitment.controller;
 
 import com.recruitment.dto.JobReqDTO;
+import com.recruitment.dto.JobResDTO;
+import com.recruitment.entity.JobPosition;
 import com.recruitment.service.CompanyService;
 import com.recruitment.service.JobService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,7 +38,10 @@ public class JobController {
 
     // 채용 공고 목록 -> 전체 목록
     @GetMapping("/list")
-    public String getAllJobPosition(Model model) {
+    public String showJobList(Model model) {
+        List<JobResDTO> jobs = jobService.findAllJob();
+        jobs.forEach(job -> System.out.println(job)); // 로그 추가
+        model.addAttribute("jobs", jobs);
         return "JobPosition/positionList";
     }
 
