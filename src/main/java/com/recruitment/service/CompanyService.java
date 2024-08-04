@@ -6,6 +6,8 @@ import com.recruitment.repository.JobPositionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CompanyService {
@@ -16,6 +18,10 @@ public class CompanyService {
 
     public Company saveCompany(Company company) {
         return companyRepository.save(company);
+    }
+
+    public List<Company> finaAllCompanies() {
+        return companyRepository.findAll();
     }
 
 }

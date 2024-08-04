@@ -16,10 +16,15 @@
         <h1 class="text-center">채용 공고 등록</h1>
         <form th:action="@{/new}" th:object="${jobReqDto}" method="post" class="needs-validation" novalidate>
             <div class="mb-3">
-                <label for="companyId" class="form-label">회사 ID:</label>
-                <input type="number" class="form-control" id="companyId" th:field="*{companyId}" required>
+                <label for="companyId" class="form-label">회사:</label>
+                <select class="form-control" id="companyId" th:field="*{companyId}" required>
+                    <option value="" disabled selected>회사 선택</option>
+                    <option th:each="company : ${companies}"
+                            th:value="${company.companyId}"
+                            th:text="${company.name}">회사 이름</option>
+                </select>
                 <div class="invalid-feedback">
-                    회사 ID를 입력해 주세요.
+                    회사를 선택해 주세요.
                 </div>
             </div>
             <div class="mb-3">

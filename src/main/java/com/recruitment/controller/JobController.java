@@ -1,6 +1,7 @@
 package com.recruitment.controller;
 
 import com.recruitment.dto.JobReqDTO;
+import com.recruitment.service.CompanyService;
 import com.recruitment.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class JobController {
 
     private final JobService jobService;
+    private final CompanyService companyService;
 
     // 채용 공고 등록 -> Form으로 이동
     @GetMapping("/new")
     public String showForm(Model model) {
         model.addAttribute("jobReqDto", new JobReqDTO());
+        model.addAttribute("companies", companyService.finaAllCompanies());
         return "JobPosition/regForm";
     }
 
