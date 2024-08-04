@@ -14,7 +14,7 @@ import lombok.ToString;
 @Builder
 public class CompanyDTO {
 
-    private Long id;
+    private Long companyId;
     private String name;
     private String country;
     private String region;

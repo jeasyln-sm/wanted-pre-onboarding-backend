@@ -5,6 +5,10 @@ import com.recruitment.dto.JobResDTO;
 import com.recruitment.entity.Company;
 import com.recruitment.entity.JobPosition;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class JobDTOMapper {
 
     //JobReqDTO
@@ -22,6 +26,7 @@ public class JobDTOMapper {
     //JobResDTO
     public static JobResDTO toDTO(JobPosition jobPosition) {
         Company company = jobPosition.getCompany();
+
         return new JobResDTO(
                 jobPosition.getJobPositionId(),
                 company.getName(),
@@ -29,7 +34,9 @@ public class JobDTOMapper {
                 company.getRegion(),
                 jobPosition.getPosition(),
                 jobPosition.getReward(),
-                jobPosition.getLanguage()
+                jobPosition.getLanguage(),
+                jobPosition.getContent(),
+                new ArrayList<>() // 빈 리스트를 반환
         );
     }
 }

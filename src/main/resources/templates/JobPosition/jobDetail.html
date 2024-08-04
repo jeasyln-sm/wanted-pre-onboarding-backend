@@ -13,7 +13,10 @@
 <div layout:fragment="content">
 
 <div class="container mt-5">
-    <h1>채용 공고 상세 페이지</h1>
+    <div class="text-center mb-4">
+        <h1>채용 공고 상세 페이지</h1>
+    </div>
+
     <table class="table table-hover">
         <tr>
             <th>채용공고 ID</th>
@@ -58,7 +61,11 @@
             </td>
         </tr>
     </table>
-    <a href="/list" class="btn btn-primary">목록으로 돌아가기</a>
+
+    <div class="d-flex justify-content-center mb-4">
+        <a href="#" th:href="@{/job/edit/{id}(id=${jobDetail.jobPositionId})}" class="btn btn-warning mx-2">수정</a>
+        <a href="/list" class="btn btn-primary mx-2">목록으로 돌아가기</a>
+    </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>

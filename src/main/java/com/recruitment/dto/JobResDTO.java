@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,5 +21,7 @@ public class JobResDTO {
     private String position;
     private int reward;
     private String language;
+    private String content;
+    private List<Long> otherJobIds;  // 같은 회사 다른 채용 공고
 
 }

@@ -9,9 +9,11 @@ import com.recruitment.repository.CompanyRepository;
 import com.recruitment.repository.JobPositionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,8 +24,8 @@ public class JobService {
     private final JobPositionRepository jobPositionRepository;
 
 
-
     // 채용 공고 등록
+    @Transactional
     public void createJob(JobReqDTO jobReqDTO) {
         Long companyId = jobReqDTO.getCompanyId();
 
@@ -37,6 +39,7 @@ public class JobService {
     }
 
     // 채용 공고 목록 -> 전체 목록
+    @Transactional
     public List<JobResDTO> findAllJob() {
         List<JobPosition> jobs = jobPositionRepository.findAll();
         List<JobResDTO> jobResDTOS = new ArrayList<>();
@@ -48,6 +51,27 @@ public class JobService {
 
         return jobResDTOS;
     }
+
+
+    // 채용 공고 상세 페이지 보기
+    @Transactional
+    public JobResDTO findById(Long jobPositionId) {
+        JobPosition jobPosition = jobPositionRepository.findById(jobPositionId)
+                .orElseThrow(() -> new IllegalArgumentException("채용 공고 ID가 존재하지 않습니다."));
+
+        // 현재 채용 공고의 회사의 다른 채용 공고 ID를 조회
+        List<Long> otherJobIds = jobPosition.getCompany().getJobPositions().stream()
+                .filter(job -> !job.getJobPositionId().equals(jobPositionId)) // 현재 채용 공고 제외
+                .map(JobPosition::getJobPositionId)
+                .collect(Collectors.toList());
+
+        // JobResDTO에 다른 채용 공고 ID를 설정
+        JobResDTO jobResDTO = JobDTOMapper.toDTO(jobPosition);
+        jobResDTO.setOtherJobIds(otherJobIds); // 추가된 필드 설정
+
+        return jobResDTO;
+    }
+
 
 
     // 채용 공고 수정

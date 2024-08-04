@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class JobController {
 
     private final JobService jobService;
     private final CompanyService companyService;
+
 
     // 채용 공고 등록 -> Form으로 이동
     @GetMapping("/new")
@@ -40,10 +42,19 @@ public class JobController {
     @GetMapping("/list")
     public String showJobList(Model model) {
         List<JobResDTO> jobs = jobService.findAllJob();
-        jobs.forEach(job -> System.out.println(job)); // 로그 추가
         model.addAttribute("jobs", jobs);
         return "JobPosition/positionList";
     }
+
+
+    // 채용 공고 상세 페이지
+    @GetMapping("/job/{id}")
+    public String showDetail(@PathVariable("id") Long jobPositionId, Model model) {
+        JobResDTO jobResDTO = jobService.findById(jobPositionId);
+        model.addAttribute("jobDetail", jobResDTO);
+        return "JobPosition/jobDetail";
+    }
+
 
     // 채용 공고 수정
 
