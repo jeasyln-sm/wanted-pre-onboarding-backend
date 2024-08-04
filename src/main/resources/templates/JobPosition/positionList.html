@@ -28,7 +28,7 @@
       </thead>
       <tbody>
         <tr th:each="job : ${jobs}">
-          <th scope="row" th:text="${job.jobPositionId}"></th>
+          <th scope="row" th:href="@{/job/{id}(id=${job.jobPositionId})}" th:text="${job.jobPositionId}"></th>
           <td th:text="${job.companyName}"></td>
           <td th:text="${job.country}"></td>
           <td th:text="${job.region}"></td>

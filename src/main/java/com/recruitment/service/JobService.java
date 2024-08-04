@@ -4,6 +4,7 @@ import com.recruitment.dto.JobReqDTO;
 import com.recruitment.dto.JobResDTO;
 import com.recruitment.entity.Company;
 import com.recruitment.entity.JobPosition;
+import com.recruitment.mapper.JobDTOMapper;
 import com.recruitment.repository.CompanyRepository;
 import com.recruitment.repository.JobPositionRepository;
 import lombok.RequiredArgsConstructor;
@@ -42,21 +43,9 @@ public class JobService {
     // 채용 공고 목록 -> 전체 목록
     public List<JobResDTO> findAllJob() {
         List<JobPosition> jobs = jobPositionRepository.findAll();
-        return jobs.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return jobs.stream().map(JobDTOMapper::toDTO).collect(Collectors.toList());
     }
 
-    private JobResDTO convertToDTO(JobPosition jobPosition) {
-        Company company = jobPosition.getCompany();
-        return new JobResDTO(
-                jobPosition.getJobPositionId(),
-                company.getName(),
-                company.getCountry(),
-                company.getRegion(),
-                jobPosition.getPosition(),
-                jobPosition.getReward(),
-                jobPosition.getLanguage()
-        );
-    }
 
     // 채용 공고 수정
 
