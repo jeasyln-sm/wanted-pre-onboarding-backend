@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -96,18 +97,22 @@ public class JobService {
     // 채용 공고 검색
     @Transactional
     public List<JobResDTO> searchJobPositions(String search) {
-        // JPQL 쿼리에서 검색 조건을 사용하여 JobPosition 엔티티를 조회
-        List<JobPosition> jobPositions = jobPositionRepository.findByPositionContainingIgnoreCaseOrLanguageContainingIgnoreCaseOrCompany_NameContainingIgnoreCase(
-                search, search, search);
+        List<JobPosition> jobPositions = new ArrayList<>();
 
-        // JobPosition 엔티티를 JobResDTO로 변환
-        List<JobResDTO> jobResDTOs = new ArrayList<>();
-        for (JobPosition jobPosition : jobPositions) {
+        // 조건에 따른 검색
+        jobPositions.addAll(jobPositionRepository.findByCompany_NameContainingIgnoreCase(search));
+        jobPositions.addAll(jobPositionRepository.findByPositionContainingIgnoreCase(search));
+        jobPositions.addAll(jobPositionRepository.findByLanguageContainingIgnoreCase(search));
+        jobPositions.addAll(jobPositionRepository.findByCompany_CountryContainingIgnoreCase(search));
+        jobPositions.addAll(jobPositionRepository.findByCompany_RegionContainingIgnoreCase(search));
+
+        List<JobResDTO> jobResDTOS = new ArrayList<>();
+        for(JobPosition jobPosition : jobPositions) {
             JobResDTO dto = JobDTOMapper.toDTO(jobPosition);
-            jobResDTOs.add(dto);
+            jobResDTOS.add(dto);
         }
 
-        return jobResDTOs;
+        return jobResDTOS;
     }
 
 }
