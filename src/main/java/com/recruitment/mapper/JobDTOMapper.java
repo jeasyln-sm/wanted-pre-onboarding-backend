@@ -39,4 +39,15 @@ public class JobDTOMapper {
                 new ArrayList<>() // 빈 리스트를 반환
         );
     }
+
+
+    // update
+    public static JobPosition updateEntity(JobReqDTO jobReqDTO, JobPosition jobPosition) {
+        jobPosition.setPosition(jobReqDTO.getPosition());
+        jobPosition.setReward(jobReqDTO.getReward());
+        jobPosition.setContent(jobReqDTO.getContent());
+        jobPosition.setLanguage(jobReqDTO.getLanguage());
+
+        return jobPosition;
+    }
 }

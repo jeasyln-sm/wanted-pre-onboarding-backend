@@ -63,7 +63,7 @@
     </table>
 
     <div class="d-flex justify-content-center mb-4">
-                <a th:href="@{/job/edit/{id}(id=${jobDetail.jobPositionId})}" class="btn btn-warning mx-2">수정</a>
+                <a th:href="@{/update/{id}(id=${jobDetail.jobPositionId})}" class="btn btn-warning mx-2">수정</a>
                 <a href="javascript:void(0);" th:onclick="'deleteJobPosition(' + ${jobDetail.jobPositionId} + ')'" class="btn btn-danger mx-2">삭제</a>
                 <a href="/list" class="btn btn-primary mx-2">목록으로 돌아가기</a>
             </div>

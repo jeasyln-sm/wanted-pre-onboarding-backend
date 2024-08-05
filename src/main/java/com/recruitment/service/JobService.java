@@ -72,8 +72,16 @@ public class JobService {
     }
 
 
-
     // 채용 공고 수정
+    @Transactional
+    public void updateJobPosition(Long jobPositionId, JobReqDTO jobReqDTO) {
+        JobPosition jobPosition = jobPositionRepository.findById(jobPositionId)
+                .orElseThrow(() -> new IllegalArgumentException("채용 공고 ID가 존재하지 않습니다."));
+
+        JobDTOMapper.updateEntity(jobReqDTO, jobPosition);
+        jobPositionRepository.save(jobPosition);
+    }
+
 
     // 채용 공고 삭제
     @Transactional
@@ -83,5 +91,4 @@ public class JobService {
 
         jobPositionRepository.delete(jobPosition);
     }
-
 }
