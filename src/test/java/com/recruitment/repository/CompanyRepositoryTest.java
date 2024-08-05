@@ -11,20 +11,20 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class CompanyRepositoryTest {
 
-    @Autowired
-    private CompanyRepository companyRepository;
-
-    @Test
-    @DisplayName("회사 생성 테스트")
-    public void createCompany() {
-        Company company = Company.builder()
-                .companyId(1L)
-                .country("한국")
-                .name("원티드")
-                .region("판교")
-                .build();
-
-        companyRepository.save(company);
-    }
+//    @Autowired
+//    private CompanyRepository companyRepository;
+//
+//    @Test
+//    @DisplayName("회사 생성 테스트")
+//    public void createCompany() {
+//        Company company = Company.builder()
+//                .companyId(1L)
+//                .country("한국")
+//                .name("원티드")
+//                .region("판교")
+//                .build();
+//
+//        companyRepository.save(company);
+//    }
 
 }

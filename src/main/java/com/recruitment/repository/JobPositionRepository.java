@@ -9,4 +9,5 @@ public interface JobPositionRepository extends JpaRepository<JobPosition, Long> 
 
     // 회사 ID로 채용 공고를 찾는 쿼리
     List<JobPosition> findByCompany_CompanyId(Long companyId);
+
 }

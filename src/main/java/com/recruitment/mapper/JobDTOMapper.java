@@ -4,11 +4,11 @@ import com.recruitment.dto.JobReqDTO;
 import com.recruitment.dto.JobResDTO;
 import com.recruitment.entity.Company;
 import com.recruitment.entity.JobPosition;
+import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
+@UtilityClass
 public class JobDTOMapper {
 
     //JobReqDTO

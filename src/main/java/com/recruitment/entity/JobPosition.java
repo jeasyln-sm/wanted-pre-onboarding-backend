@@ -1,6 +1,5 @@
 package com.recruitment.entity;
 
-import com.recruitment.dto.JobReqDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;

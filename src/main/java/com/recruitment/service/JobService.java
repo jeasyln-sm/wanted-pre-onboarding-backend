@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,7 +66,7 @@ public class JobService {
 
         // JobResDTO에 다른 채용 공고 ID를 설정
         JobResDTO jobResDTO = JobDTOMapper.toDTO(jobPosition);
-        jobResDTO.setOtherJobIds(otherJobIds); // 추가된 필드 설정
+        jobResDTO.setOtherJobIds(otherJobIds);
 
         return jobResDTO;
     }
@@ -77,5 +76,12 @@ public class JobService {
     // 채용 공고 수정
 
     // 채용 공고 삭제
+    @Transactional
+    public void deleteJob(Long jobPositionId) {
+        JobPosition jobPosition = jobPositionRepository.findById(jobPositionId)
+                .orElseThrow(() -> new IllegalArgumentException("채용 공고 ID가 존재하지 않습니다."));
+
+        jobPositionRepository.delete(jobPosition);
+    }
 
 }
