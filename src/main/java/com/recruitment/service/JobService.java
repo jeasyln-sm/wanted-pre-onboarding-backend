@@ -91,4 +91,23 @@ public class JobService {
 
         jobPositionRepository.delete(jobPosition);
     }
+
+
+    // 채용 공고 검색
+    @Transactional
+    public List<JobResDTO> searchJobPositions(String search) {
+        // JPQL 쿼리에서 검색 조건을 사용하여 JobPosition 엔티티를 조회
+        List<JobPosition> jobPositions = jobPositionRepository.findByPositionContainingIgnoreCaseOrLanguageContainingIgnoreCaseOrCompany_NameContainingIgnoreCase(
+                search, search, search);
+
+        // JobPosition 엔티티를 JobResDTO로 변환
+        List<JobResDTO> jobResDTOs = new ArrayList<>();
+        for (JobPosition jobPosition : jobPositions) {
+            JobResDTO dto = JobDTOMapper.toDTO(jobPosition);
+            jobResDTOs.add(dto);
+        }
+
+        return jobResDTOs;
+    }
+
 }

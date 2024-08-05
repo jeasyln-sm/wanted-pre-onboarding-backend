@@ -2,6 +2,8 @@ package com.recruitment.controller;
 
 import com.recruitment.dto.JobReqDTO;
 import com.recruitment.dto.JobResDTO;
+import com.recruitment.entity.JobPosition;
+import com.recruitment.mapper.JobDTOMapper;
 import com.recruitment.service.CompanyService;
 import com.recruitment.service.JobService;
 import lombok.RequiredArgsConstructor;
@@ -13,10 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -98,4 +100,12 @@ public class JobController {
         }
     }
 
+
+    // 채용 공고 검색
+    @GetMapping("/search")
+    public String searchJobPositions(@RequestParam("search") String search, Model model) {
+        List<JobResDTO> jobs = jobService.searchJobPositions(search);
+        model.addAttribute("jobs", jobs);
+        return "JobPosition/positionList";
+    }
 }
