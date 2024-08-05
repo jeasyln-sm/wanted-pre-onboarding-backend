@@ -1,1 +1,3 @@
-# wanted-pre-onboarding-backend
+# 📑wanted-pre-onboarding-backend
+
+# 🎞️기능 살펴보기
